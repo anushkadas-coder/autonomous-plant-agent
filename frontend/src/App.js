@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Cpu, TerminalSquare, Zap, SlidersHorizontal } from 'lucide-react';
+import { Cpu, SlidersHorizontal } from 'lucide-react';
 import './App.css';
 
 // 1. Matrix Background (Now accepts dynamic opacity)
