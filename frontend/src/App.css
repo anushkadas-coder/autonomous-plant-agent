@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* The Senior Palette: High Contrast, Low Noise */
+  --bg-color: #030303; 
+  --border-color: #112215; 
+  --label-color: rgba(0, 255, 65, 0.4); 
+  --data-color: #00ff41; 
+  --alert-bg: #001a05;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--data-color);
+  font-family: 'Share Tech Mono', monospace;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Subtle, barely-there CRT Scanlines */
+body::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Proximity Rule: Generous breathing room */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Structural Element: The Header */
+.sys-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 40px;
+}
+
+.sys-title {
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.sys-status {
+  font-size: 0.85rem;
+  color: var(--label-color);
+  text-transform: uppercase;
+}
+
+/* 2-Column Command Center Layout */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+}
+
+/* Data Grouping */
+.telemetry-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* --- CONTRAST CONTROL SLIDER STYLES --- */
+.controls-panel {
+  background: var(--alert-bg);
+  border: 1px dashed var(--border-color);
+  padding: 20px;
+  margin-bottom: 5px; 
+}
+
+.controls-panel label {
+  font-size: 0.8rem;
+  color: var(--label-color);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Custom Cyber Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 12px;
+  background: var(--data-color);
+  cursor: pointer;
+  margin-top: -8px;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: var(--border-color);
+  border: 1px solid var(--bg-color);
+}
+/* -------------------------------------- */
+
+.sensor-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typographic Discipline: Labels */
+.sensor-group label {
+  font-size: 0.75rem;
+  color: var(--label-color);
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+/* Typographic Discipline: Hero Data */
+.sensor-input {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--data-color);
+  font-family: inherit;
+  font-size: 1.8rem;
+  padding: 10px 15px;
+  transition: all 0s; /* Hard cuts, no smooth fades */
+}
+
+/* Meaningful Micro-interaction: Harsh Focus State */
+.sensor-input:focus {
+  background: var(--data-color);
+  color: var(--bg-color);
+  border-color: var(--data-color);
+  outline: none;
+}
+
+/* Execute Button using Brackets */
+.btn-execute {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--data-color);
+  padding: 20px;
+  font-family: inherit;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-execute:hover:not(:disabled) {
+  background: var(--data-color);
+  color: var(--bg-color);
+}
+
+.btn-execute:disabled {
+  color: var(--border-color);
+  cursor: not-allowed;
+}
+
+/* Terminal Log Area */
+.output-panel {
+  background: var(--alert-bg);
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  min-height: 300px;
+}
+
+.output-header {
+  font-size: 0.8rem;
+  color: var(--label-color);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.log-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  text-transform: lowercase; /* Forces unix-style log look */
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2rem;
+  background-color: var(--data-color);
+  vertical-align: middle;
+  margin-left: 5px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
